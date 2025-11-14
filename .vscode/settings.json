@@ -1,0 +1,17 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Run ESLint fixes and TS Organize Imports on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // TypeScript import style / hygiene
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+
+  // (Optional) keep unused vars compile-warning-only; ESLint will handle auto-removal
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+}

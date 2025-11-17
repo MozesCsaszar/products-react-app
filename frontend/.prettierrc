@@ -1,9 +1,7 @@
 {
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "arrowParens": "always",
-  "endOfLine": "lf",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "extends": ["react-app", "react-app/jest"],
+  "rules": {
+    "no-unused-vars": "warn",
+    "unused-imports/no-unused-imports": "off"
+  }
 }

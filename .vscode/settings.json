@@ -13,5 +13,11 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
 
   // (Optional) keep unused vars compile-warning-only; ESLint will handle auto-removal
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "[typescriptreact]": {
+    "editor.tabSize": 2
+  },
+  "[typescript]": {
+    "editor.tabSize": 2
+  }
 }

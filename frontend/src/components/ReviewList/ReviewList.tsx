@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { type FC } from "react";
 import type { Review } from "../../model/review";
 import ReviewListItem from "../ReviewListItem/ReviewListItem";
@@ -8,17 +9,28 @@ interface ReviewListProps {
 }
 
 const ReviewList: FC<ReviewListProps> = ({ reviews }) => (
-  <div
+  <Box
     className={styles.ReviewList}
-    style={{
-      maxHeight: "calc(100vh - 6rem)",
-      height: "100%",
-    }}
+    sx={(theme) => ({
+      height: "calc(100vh - 6rem)",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+      gridAutoRows: "minmax(200px, 30%)",
+      gap: "1rem",
+      width: "100%",
+      overflowY: "auto",
+      padding: "1rem 1rem",
+      [theme.breakpoints.down("md")]: {
+        overflowY: "visible",
+        padding: "1rem 0rem",
+        height: "auto",
+      },
+    })}
   >
     {reviews.map((review) => (
       <ReviewListItem key={review.id} review={review} />
     ))}
-  </div>
+  </Box>
 );
 
 export default ReviewList;

@@ -1,13 +1,2 @@
 .ProductListItem {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 1rem;
-
-  img {
-    width: 100%;
-    border-radius: calc(1rem / 2);
-  }
 }

@@ -19,6 +19,7 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
     <div
       style={{
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         marginBottom: "1rem",
@@ -27,7 +28,6 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
       <Typography variant="h6">
         {new Date(review.createdAt).toDateString()}
       </Typography>
-      <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
       <Rating
         sx={{ alignSelf: "center" }}
         className="rating"

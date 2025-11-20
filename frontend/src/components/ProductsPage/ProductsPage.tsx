@@ -1,17 +1,42 @@
-import { TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Paper, TextField, Typography } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
+import { useDeferredValue, useEffect, useState } from "react";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ProductList from "../ProductList/ProductList";
+
+const navSX = (theme: Theme) =>
+  ({
+    display: "flex",
+    position: "sticky",
+    left: 0,
+    right: 0,
+    top: 0,
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap: "1rem",
+    backgroundColor: "white",
+    zIndex: 10,
+    margin: "-1rem -1rem",
+    marginBottom: "1rem",
+    padding: "1rem",
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+      alignItems: "stretch",
+    },
+  } as const);
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filterValue, setFilterValue] = useState<string>("");
 
-  const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(filterValue) ||
-      product.description.toLowerCase().includes(filterValue)
+  const filteredProducts = useDeferredValue(
+    products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(filterValue) ||
+        product.description.toLowerCase().includes(filterValue)
+    ),
+    products
   );
 
   // fetch products
@@ -24,26 +49,26 @@ const ProductsPage = () => {
 
   return (
     <div style={{ padding: "1rem" }}>
-      <div
-        className="filter"
-        style={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          marginBottom: "1rem",
-          gap: "1rem",
-        }}
-      >
+      <Paper className="filter" sx={(t) => navSX(t)}>
         <TextField
+          sx={{
+            flex: 1,
+          }}
           value={filterValue}
           onChange={(e) => setFilterValue(e.target.value.toLowerCase())}
           label="Search Products"
           variant="outlined"
         />
-        <Typography variant="h6">
-          {filteredProducts.length} / {products.length} Products Match Query
+        <Typography
+          sx={{
+            // flex: 1,
+            minWidth: "10em",
+          }}
+          variant="h6"
+        >
+          {filteredProducts.length} / {products.length} Products
         </Typography>
-      </div>
+      </Paper>
       <ProductList products={filteredProducts} />
     </div>
   );

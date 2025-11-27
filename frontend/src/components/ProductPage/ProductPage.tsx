@@ -1,4 +1,5 @@
 import { Box, Button, Paper, Typography } from "@mui/material";
+
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";

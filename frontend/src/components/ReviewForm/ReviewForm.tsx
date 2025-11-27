@@ -1,4 +1,13 @@
-import { Button, Paper, Rating, TextField, Typography } from "@mui/material";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Button,
+  Rating,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useState, type FC } from "react";
 import ProductAPI from "../../api/products";
 import styles from "./ReviewForm.module.css";
@@ -23,32 +32,43 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
   }
 
   return (
-    <Paper sx={{ padding: "1rem" }}>
-      <form
-        className={styles.ReviewForm}
-        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-        onSubmit={onSubmit}
-      >
-        <Typography sx={{ textTransform: "uppercase" }} variant="h5">
+    <Accordion>
+      <AccordionSummary expandIcon={<ArrowDropDownIcon fontSize="large" />}>
+        <Typography
+          sx={{
+            textTransform: "uppercase",
+            width: "100%",
+            textAlign: "center",
+          }}
+          variant="h6"
+        >
           Post a Review
         </Typography>
-        <Rating
-          sx={{ alignSelf: "center" }}
-          size="large"
-          precision={1}
-          value={rating}
-          onChange={(_, value) => setRating(value ?? 0)}
-        ></Rating>
-        <TextField
-          multiline
-          minRows={5}
-          maxRows={10}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></TextField>
-        <Button type="submit">Post Review</Button>
-      </form>
-    </Paper>
+      </AccordionSummary>
+      <AccordionDetails>
+        <form
+          className={styles.ReviewForm}
+          style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+          onSubmit={onSubmit}
+        >
+          <Rating
+            sx={{ alignSelf: "center" }}
+            size="large"
+            precision={1}
+            value={rating}
+            onChange={(_, value) => setRating(value ?? 0)}
+          ></Rating>
+          <TextField
+            multiline
+            minRows={5}
+            maxRows={10}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></TextField>
+          <Button type="submit">Post Review</Button>
+        </form>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 

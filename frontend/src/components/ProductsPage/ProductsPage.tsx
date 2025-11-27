@@ -1,11 +1,9 @@
-import { type FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ProductList from "../ProductList/ProductList";
 
-interface ProductsPageProps {}
-
-const ProductsPage: FC<ProductsPageProps> = () => {
+const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {

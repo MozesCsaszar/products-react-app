@@ -1,8 +1,9 @@
-import { Paper, TextField, Typography } from "@mui/material";
+import { Box, Paper, TextField, Typography } from "@mui/material";
 import type { Theme } from "@mui/material/styles";
 import { useDeferredValue, useEffect, useState } from "react";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
+import ErrorPanel from "../ErrorPanel/ErrorPanel";
 import ProductList from "../ProductList/ProductList";
 
 const navSX = (theme: Theme) =>
@@ -29,6 +30,8 @@ const navSX = (theme: Theme) =>
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [filterValue, setFilterValue] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   const filteredProducts = useDeferredValue(
     products.filter(
@@ -42,13 +45,20 @@ const ProductsPage = () => {
   // fetch products
   useEffect(() => {
     // Fetch products from an API or data source
-    ProductAPI.getProducts().then((fetchedProducts) => {
-      setProducts(fetchedProducts);
-    });
+    ProductAPI.getProducts()
+      .then((fetchedProducts) => {
+        setProducts(fetchedProducts);
+      })
+      .catch(() => {
+        setError("Failed to fetch products.");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <div style={{ padding: "1rem" }}>
+    <Box sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
       <Paper className="filter" sx={(t) => navSX(t)}>
         <TextField
           sx={{
@@ -69,8 +79,10 @@ const ProductsPage = () => {
           {filteredProducts.length} / {products.length} Products
         </Typography>
       </Paper>
-      <ProductList products={filteredProducts} />
-    </div>
+      <ErrorPanel error={error} loading={loading}>
+        <ProductList products={filteredProducts} />
+      </ErrorPanel>
+    </Box>
   );
 };
 export default ProductsPage;

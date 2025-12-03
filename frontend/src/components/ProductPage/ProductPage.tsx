@@ -5,8 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ErrorPanel from "../ErrorPanel/ErrorPanel";
-import ProductForm from "../ProductForm/ProductForm";
-import ReviewForm from "../ReviewForm/ReviewForm";
+import ProductItem from "../ProductItem/ProductItem";
 import ReviewList from "../ReviewList/ReviewList";
 import styles from "./ProductPage.module.css";
 
@@ -67,7 +66,7 @@ const ProductPage = () => {
                 minWidth: "calc(350px + 2rem)",
                 maxWidth: "calc(500px + 2rem)",
                 minHeight: "calc(100vh - 2rem)",
-                padding: "1rem",
+                paddingY: "1rem",
                 [theme.breakpoints.down("md")]: {
                   width: "calc(60vw + 2rem)",
                   margin: "0 auto",
@@ -75,8 +74,11 @@ const ProductPage = () => {
                 },
               })}
             >
-              <ProductForm product={product!} fetchProduct={fetchProduct} />
-              <ReviewForm productId={product!.id} fetchProduct={fetchProduct} />
+              <ProductItem
+                showReview={true}
+                product={product!}
+                fetchProduct={fetchProduct}
+              />
               <Button onClick={() => navigate(-1)}>Back</Button>
             </Box>
 

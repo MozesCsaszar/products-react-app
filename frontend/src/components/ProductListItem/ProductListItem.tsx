@@ -55,6 +55,7 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
             precision={0.1}
             size="large"
           />
+          {/* em dash with surrounding white spaces for beautiful display */}
           <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
           <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
         </Box>

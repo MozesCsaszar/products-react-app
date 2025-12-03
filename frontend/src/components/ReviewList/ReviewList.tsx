@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { type FC } from "react";
 import type { Review } from "../../model/review";
 import ReviewListItem from "../ReviewListItem/ReviewListItem";
-import styles from "./ReviewList.module.css";
 
 interface ReviewListProps {
   reviews: Review[];
@@ -10,7 +9,6 @@ interface ReviewListProps {
 
 const ReviewList: FC<ReviewListProps> = ({ reviews }) => (
   <Box
-    className={styles.ReviewList}
     sx={(theme) => ({
       height: "calc(100vh - 6rem)",
       display: "grid",

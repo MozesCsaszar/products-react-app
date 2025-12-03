@@ -49,7 +49,7 @@ const ProductsPage = () => {
 
   return (
     <div style={{ padding: "1rem" }}>
-      <Paper className="filter" sx={(t) => navSX(t)}>
+      <Paper sx={(t) => navSX(t)}>
         <TextField
           sx={{
             flex: 1,

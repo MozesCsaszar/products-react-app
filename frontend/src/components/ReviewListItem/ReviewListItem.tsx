@@ -30,7 +30,6 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
       </Typography>
       <Rating
         sx={{ alignSelf: "center" }}
-        className="rating"
         readOnly
         value={review.rating}
         precision={0.1}

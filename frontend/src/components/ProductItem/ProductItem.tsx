@@ -21,12 +21,10 @@ const ProductItem: FC<ProductFormProps> = ({
   return (
     <Stack
       sx={{
-        flex: 1,
-        gap: "0.5rem",
-        overflow: "auto",
-        paddingX: "1rem",
+        height: "100%",
       }}
     >
+      {/* Title */}
       <Typography
         variant="h5"
         sx={{
@@ -41,52 +39,62 @@ const ProductItem: FC<ProductFormProps> = ({
         {product.name}
       </Typography>
 
-      <Box
+      {/* Content */}
+      <Stack
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          height: "100%",
+          gap: "0.5rem",
+          overflow: "auto",
+          paddingX: "1rem",
         }}
       >
-        <Rating
-          sx={{ alignSelf: "center" }}
-          className="rating"
-          readOnly
-          value={avgRating}
-          precision={0.1}
-          size="large"
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Rating
+            sx={{ alignSelf: "center" }}
+            className="rating"
+            readOnly
+            value={avgRating}
+            precision={0.1}
+            size="large"
+          />
+          <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
+          <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
+        </Box>
+
+        <Typography variant="h6">
+          {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
+        </Typography>
+
+        {showReview && (
+          <ReviewForm
+            productId={product.id}
+            fetchProduct={fetchProduct}
+          ></ReviewForm>
+        )}
+
+        <img
+          style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
+          src={product.image}
+          alt={product.name}
         />
-        <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
-        <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
-      </Box>
 
-      <Typography variant="h6">
-        {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
-      </Typography>
-
-      {showReview && (
-        <ReviewForm
-          productId={product.id}
-          fetchProduct={fetchProduct}
-        ></ReviewForm>
-      )}
-
-      <img
-        style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
-        src={product.image}
-        alt={product.name}
-      />
-
-      <Typography
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flex: "1",
-        }}
-      >
-        {product.description}
-      </Typography>
+        <Typography
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flex: "1",
+          }}
+        >
+          {product.description}
+        </Typography>
+      </Stack>
     </Stack>
   );
 };

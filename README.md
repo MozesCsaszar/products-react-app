@@ -24,7 +24,13 @@ cd ./frontend/
 npm install
 ```
 
-3. Run the development server:
+3. Create .env file
+
+```.env
+BASE_URL=<your_backend_url>
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev

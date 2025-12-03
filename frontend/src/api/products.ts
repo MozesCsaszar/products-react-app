@@ -1,6 +1,6 @@
 import type { Product } from "../model/product";
 
-const URL_BASE = "http://localhost:8055";
+const URL_BASE: string = import.meta.env.VITE_BASE_URL;
 
 class ProductsAPI {
   constructor() {}

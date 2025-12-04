@@ -3,15 +3,35 @@ import type { Product } from "../model/product";
 
 const URL_BASE: string = import.meta.env.VITE_BASE_URL;
 
+const randomToProdut: { [key: string]: number } = {};
+
+function getRandom(id: string) {
+  if (randomToProdut[id] === undefined) {
+    randomToProdut[id] = Math.floor(Math.random() * 10000);
+  }
+  return randomToProdut[id];
+}
+
 class ProductsAPI {
   constructor() {}
 
   async getProducts() {
-    return (await axios.get<Product[]>(`${URL_BASE}/products`)).data;
+    return (await axios.get<Product[]>(`${URL_BASE}/products`)).data.map(
+      // add random part to image URL
+      (p) => ({
+        ...p,
+        image: `${p.image}?random=${getRandom(p.id)}`,
+      })
+    );
   }
 
   async getProductById(id: string) {
-    return (await axios.get<Product>(`${URL_BASE}/products/${id}`)).data;
+    const product = (await axios.get<Product>(`${URL_BASE}/products/${id}`))
+      .data;
+    return {
+      ...product,
+      image: `${product.image}?random=${getRandom(id)}`,
+    };
   }
 
   async postReview(id: string, rating: number, text: string) {

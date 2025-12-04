@@ -18,11 +18,16 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
         justifyContent: "space-between",
         gap: "0.5rem",
         paddingY: "1rem",
+        transition: "transform 0.1s ease-in-out",
+        ":hover": {
+          transform: "scale(1.05)",
+        },
       }}
     >
       <ProductItem
         product={product}
         showReview={false}
+        headingSize="h6"
         fetchProduct={() => {}}
       ></ProductItem>
 

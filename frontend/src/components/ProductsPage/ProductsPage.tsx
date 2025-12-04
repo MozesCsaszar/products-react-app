@@ -24,6 +24,9 @@ const navSX = (theme: Theme) =>
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       alignItems: "stretch",
+      gap: "0.25rem",
+      padding: "0.75rem",
+      paddingBottom: "0.25rem",
     },
   } as const);
 

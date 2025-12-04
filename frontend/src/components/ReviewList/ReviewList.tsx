@@ -23,6 +23,11 @@ const ReviewList: FC<ReviewListProps> = ({ reviews }) => (
         padding: "0rem 1rem",
         height: "auto",
       },
+      [theme.breakpoints.down("sm")]: {
+        paddingX: "0.75rem",
+        gridTemplateColumns: " minmax(250px, 1fr)",
+        height: "auto",
+      },
     })}
   >
     {reviews.map((review) => (

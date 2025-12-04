@@ -67,15 +67,21 @@ const ProductPage = () => {
                   width: "calc(60vw + 2rem)",
                   margin: "0 auto",
                   padding: "0",
+                  minWidth: "calc(350px - 2rem)",
+                  paddingTop: "1rem",
                 },
               })}
             >
               <ProductItem
                 showReview={true}
                 product={product!}
+                headingSize="h5"
                 fetchProduct={fetchProduct}
               />
-              <Button sx={{ marginX: "1rem" }} onClick={() => navigate(-1)}>
+              <Button
+                sx={{ marginX: "1rem", flex: 0 }}
+                onClick={() => navigate(-1)}
+              >
                 Back
               </Button>
             </Box>
@@ -87,7 +93,6 @@ const ProductPage = () => {
                 flex: 1,
                 padding: "1rem 0",
                 [theme.breakpoints.down("md")]: {
-                  padding: "1rem 0",
                   paddingBottom: "0",
                 },
               })}

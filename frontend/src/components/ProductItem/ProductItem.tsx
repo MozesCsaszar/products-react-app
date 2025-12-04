@@ -6,12 +6,14 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 interface ProductFormProps {
   product: Product;
   showReview: boolean;
+  headingSize: "h5" | "h6";
   fetchProduct: () => void;
 }
 
 const ProductItem: FC<ProductFormProps> = ({
   product,
   showReview,
+  headingSize,
   fetchProduct,
 }) => {
   const nrReviews = product.reviews.length;
@@ -21,12 +23,13 @@ const ProductItem: FC<ProductFormProps> = ({
   return (
     <Stack
       sx={{
-        height: "100%",
+        // TODO: fix absolute value calculation
+        height: "calc(100% - 36.5px - 0.5rem)",
       }}
     >
       {/* Title */}
       <Typography
-        variant="h6"
+        variant={headingSize}
         sx={{
           display: "flex",
           justifyContent: "center",

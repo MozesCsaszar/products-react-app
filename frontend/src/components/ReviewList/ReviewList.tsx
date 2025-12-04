@@ -10,17 +10,22 @@ interface ReviewListProps {
 const ReviewList: FC<ReviewListProps> = ({ reviews }) => (
   <Box
     sx={(theme) => ({
-      height: "calc(100vh - 6rem)",
+      height: "100%",
       display: "grid",
       gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
       gridAutoRows: "minmax(200px, 30%)",
       gap: "1rem",
       width: "100%",
       overflowY: "auto",
-      padding: "1rem 1rem",
+      padding: "8px 1rem",
       [theme.breakpoints.down("md")]: {
         overflowY: "visible",
-        padding: "1rem 0rem",
+        padding: "0rem 1rem",
+        height: "auto",
+      },
+      [theme.breakpoints.down("sm")]: {
+        paddingX: "0.75rem",
+        gridTemplateColumns: " minmax(250px, 1fr)",
         height: "auto",
       },
     })}

@@ -57,7 +57,6 @@ const ProductItem: FC<ProductFormProps> = ({
         >
           <Rating
             sx={{ alignSelf: "center" }}
-            className="rating"
             readOnly
             value={avgRating}
             precision={0.1}

@@ -59,7 +59,7 @@ const ProductsPage = () => {
 
   return (
     <Box sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
-      <Paper className="filter" sx={(t) => navSX(t)}>
+      <Paper sx={(t) => navSX(t)}>
         <TextField
           sx={{
             flex: 1,

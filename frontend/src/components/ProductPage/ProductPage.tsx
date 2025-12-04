@@ -7,7 +7,6 @@ import { type Product } from "../../model/product";
 import ErrorPanel from "../ErrorPanel/ErrorPanel";
 import ProductItem from "../ProductItem/ProductItem";
 import ReviewList from "../ReviewList/ReviewList";
-import styles from "./ProductPage.module.css";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -32,7 +31,6 @@ const ProductPage = () => {
 
   return (
     <Paper
-      className={styles.ProductPage}
       sx={(theme) => ({
         display: "flex",
         width: "100vw",
@@ -57,7 +55,6 @@ const ProductPage = () => {
           <>
             {/* Product */}
             <Box
-              className="forms"
               sx={(theme) => ({
                 display: "flex",
                 flexDirection: "column",
@@ -84,7 +81,6 @@ const ProductPage = () => {
 
             {/* Reviews */}
             <Box
-              className="review-list"
               sx={(theme) => ({
                 flex: 1,
                 padding: "1rem",

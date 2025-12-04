@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { useState, type FC } from "react";
 import ProductAPI from "../../api/products";
-import styles from "./ReviewForm.module.css";
 
 interface ReviewFormProps {
   productId: string;
@@ -80,7 +79,6 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
         </AccordionSummary>
         <AccordionDetails>
           <form
-            className={styles.ReviewForm}
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             onSubmit={onSubmit}
           >

@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -35,7 +35,6 @@ const ProductPage = () => {
         display: "flex",
         width: "100vw",
         height: "100vh",
-        padding: "1rem",
         [theme.breakpoints.down("md")]: {
           flexDirection: "column",
           height: "auto",
@@ -76,14 +75,17 @@ const ProductPage = () => {
                 product={product!}
                 fetchProduct={fetchProduct}
               />
-              <Button onClick={() => navigate(-1)}>Back</Button>
+              <Button sx={{ marginX: "1rem" }} onClick={() => navigate(-1)}>
+                Back
+              </Button>
             </Box>
 
             {/* Reviews */}
-            <Box
+            <Stack
               sx={(theme) => ({
+                maxHeight: "100vh",
                 flex: 1,
-                padding: "1rem",
+                padding: "1rem 0",
                 [theme.breakpoints.down("md")]: {
                   padding: "1rem 0",
                   paddingBottom: "0",
@@ -93,12 +95,12 @@ const ProductPage = () => {
               <Typography
                 variant="h5"
                 gutterBottom
-                style={{ textTransform: "uppercase" }}
+                sx={{ textTransform: "uppercase", marginBottom: "1rem" }}
               >
                 Reviews
               </Typography>
               <ReviewList reviews={product!.reviews}></ReviewList>
-            </Box>
+            </Stack>
           </>
         )}
       </ErrorPanel>

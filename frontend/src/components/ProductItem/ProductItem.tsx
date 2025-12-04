@@ -26,14 +26,16 @@ const ProductItem: FC<ProductFormProps> = ({
     >
       {/* Title */}
       <Typography
-        variant="h5"
+        variant="h6"
         sx={{
-          marginBottom: "0",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           textTransform: "uppercase",
-          marignBottom: "10px",
+          marginBottom: "1rem",
+          paddingX: "1rem",
+          lineHeight: "100%",
+          minHeight: "2.2rem",
         }}
       >
         {product.name}

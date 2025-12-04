@@ -26,7 +26,11 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
         fetchProduct={() => {}}
       ></ProductItem>
 
-      <Button component={Link} to={`/products/${product.id}`}>
+      <Button
+        sx={{ marginX: "1rem" }}
+        component={Link}
+        to={`/products/${product.id}`}
+      >
         View More
       </Button>
     </Paper>

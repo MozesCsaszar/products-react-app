@@ -1,4 +1,4 @@
-import { Box, Paper, TextField, Typography } from "@mui/material";
+import { Paper, Stack, TextField, Typography } from "@mui/material";
 import type { Theme } from "@mui/material/styles";
 import { useDeferredValue, useEffect, useState } from "react";
 import ProductAPI from "../../api/products";
@@ -61,7 +61,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <Box sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
+    <Stack sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
       <Paper sx={(t) => navSX(t)}>
         <TextField
           sx={{
@@ -85,7 +85,7 @@ const ProductsPage = () => {
       <ErrorPanel error={error} loading={loading}>
         <ProductList products={filteredProducts} />
       </ErrorPanel>
-    </Box>
+    </Stack>
   );
 };
 export default ProductsPage;

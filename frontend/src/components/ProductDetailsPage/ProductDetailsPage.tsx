@@ -79,7 +79,7 @@ const ProductDetailsPage = () => {
                 fetchProduct={fetchProduct}
               />
               <Button
-                sx={{ marginX: "1rem", flex: 0 }}
+                sx={{ marginX: "1rem", flex: 0, marginTop: "0.5rem" }}
                 onClick={() => navigate(-1)}
               >
                 Back

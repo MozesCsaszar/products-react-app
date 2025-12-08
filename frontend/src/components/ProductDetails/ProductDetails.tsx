@@ -23,8 +23,8 @@ const ProductDetailsProps: FC<ProductDetailsProps> = ({
   return (
     <Stack
       sx={{
-        // TODO: fix absolute value calculation
-        height: "calc(100% - 36.5px - 0.5rem)",
+        height: "stretch",
+        overflowY: "auto",
       }}
     >
       {/* Title */}

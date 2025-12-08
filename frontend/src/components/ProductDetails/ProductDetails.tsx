@@ -3,14 +3,14 @@ import { type FC } from "react";
 import type { Product } from "../../model/product";
 import ReviewForm from "../ReviewForm/ReviewForm";
 
-interface ProductFormProps {
+interface ProductDetailsProps {
   product: Product;
   showReview: boolean;
   headingSize: "h5" | "h6";
   fetchProduct: () => void;
 }
 
-const ProductItem: FC<ProductFormProps> = ({
+const ProductDetailsProps: FC<ProductDetailsProps> = ({
   product,
   showReview,
   headingSize,
@@ -103,4 +103,4 @@ const ProductItem: FC<ProductFormProps> = ({
   );
 };
 
-export default ProductItem;
+export default ProductDetailsProps;

@@ -2,7 +2,7 @@ import { Button, Paper } from "@mui/material";
 import { type FC } from "react";
 import { Link } from "react-router";
 import type { Product } from "../../model/product";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductDetailsProps from "../ProductDetails/ProductDetails";
 
 interface ProductListItemProps {
   product: Product;
@@ -25,12 +25,12 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
           },
         }}
       >
-        <ProductItem
+        <ProductDetailsProps
           product={product}
           showReview={false}
           headingSize="h6"
           fetchProduct={() => {}}
-        ></ProductItem>
+        ></ProductDetailsProps>
 
         <Button
           sx={{ marginX: "1rem" }}

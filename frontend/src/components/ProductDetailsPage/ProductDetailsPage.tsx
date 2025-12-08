@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ErrorPanel from "../ErrorPanel/ErrorPanel";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductDetailsProps from "../ProductDetails/ProductDetails";
 import ReviewList from "../ReviewList/ReviewList";
 
 const ProductDetailsPage = () => {
@@ -72,7 +72,7 @@ const ProductDetailsPage = () => {
                 },
               })}
             >
-              <ProductItem
+              <ProductDetailsProps
                 showReview={true}
                 product={product!}
                 headingSize="h5"

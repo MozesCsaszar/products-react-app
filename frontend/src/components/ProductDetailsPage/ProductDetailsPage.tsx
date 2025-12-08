@@ -8,7 +8,7 @@ import ErrorPanel from "../ErrorPanel/ErrorPanel";
 import ProductItem from "../ProductItem/ProductItem";
 import ReviewList from "../ReviewList/ReviewList";
 
-const ProductPage = () => {
+const ProductDetailsPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [product, setProduct] = useState<Product | null>(null);
@@ -113,4 +113,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default ProductDetailsPage;

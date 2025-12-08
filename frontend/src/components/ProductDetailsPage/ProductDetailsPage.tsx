@@ -1,4 +1,4 @@
-import { Box, Button, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,7 +30,7 @@ const ProductDetailsPage = () => {
   }, [fetchProduct]);
 
   return (
-    <Paper
+    <Box
       sx={(theme) => ({
         display: "flex",
         width: "100vw",
@@ -109,7 +109,7 @@ const ProductDetailsPage = () => {
           </>
         )}
       </ErrorPanel>
-    </Paper>
+    </Box>
   );
 };
 

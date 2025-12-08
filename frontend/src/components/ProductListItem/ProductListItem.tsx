@@ -10,35 +10,37 @@ interface ProductListItemProps {
 
 const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
   return (
-    <Paper
-      sx={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        gap: "0.5rem",
-        paddingY: "1rem",
-        transition: "transform 0.1s ease-in-out",
-        ":hover": {
-          transform: "scale(1.05)",
-        },
-      }}
-    >
-      <ProductItem
-        product={product}
-        showReview={false}
-        headingSize="h6"
-        fetchProduct={() => {}}
-      ></ProductItem>
-
-      <Button
-        sx={{ marginX: "1rem" }}
-        component={Link}
-        to={`/products/${product.id}`}
+    <Link style={{ textDecoration: "none" }} to={`/products/${product.id}`}>
+      <Paper
+        sx={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          gap: "0.5rem",
+          paddingY: "1rem",
+          transition: "transform 0.1s ease-in-out",
+          ":hover": {
+            transform: "scale(1.05)",
+          },
+        }}
       >
-        View More
-      </Button>
-    </Paper>
+        <ProductItem
+          product={product}
+          showReview={false}
+          headingSize="h6"
+          fetchProduct={() => {}}
+        ></ProductItem>
+
+        <Button
+          sx={{ marginX: "1rem" }}
+          component={Link}
+          to={`/products/${product.id}`}
+        >
+          View More
+        </Button>
+      </Paper>
+    </Link>
   );
 };
 

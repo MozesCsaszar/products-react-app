@@ -1,91 +1,46 @@
-import { Box, Button, Paper, Rating, Stack, Typography } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { type FC } from "react";
 import { Link } from "react-router";
 import type { Product } from "../../model/product";
+import ProductDetailsProps from "../ProductDetails/ProductDetails";
 
 interface ProductListItemProps {
   product: Product;
 }
 
 const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
-  const nrReviews = product.reviews.length;
-  const avgRating =
-    product.reviews.reduce((prev, r) => r.rating + prev, 0) / (nrReviews || 1);
   return (
-    <Paper
-      sx={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        gap: "0.5rem",
-        padding: "1rem",
-      }}
-    >
-      <Stack
+    <Link style={{ textDecoration: "none" }} to={`/products/${product.id}`}>
+      <Paper
         sx={{
-          flex: 1,
+          position: "relative",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
           gap: "0.5rem",
+          paddingY: "1rem",
+          transition: "transform 0.1s ease-in-out",
+          ":hover": {
+            transform: "scale(1.05)",
+          },
         }}
       >
-        <Typography
-          variant="h5"
-          sx={{
-            height: "2.5em",
-            marginBottom: "0",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <ProductDetailsProps
+          product={product}
+          showReview={false}
+          headingSize="h6"
+          fetchProduct={() => {}}
+        ></ProductDetailsProps>
+
+        <Button
+          sx={{ marginX: "1rem" }}
+          component={Link}
+          to={`/products/${product.id}`}
         >
-          {product.name}
-        </Typography>
-
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Rating
-            sx={{ alignSelf: "center" }}
-            readOnly
-            value={avgRating}
-            precision={0.1}
-            size="large"
-          />
-          {/* em dash with surrounding white spaces for beautiful display */}
-          <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
-          <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
-        </Box>
-
-        <Typography variant="h6">
-          {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
-        </Typography>
-
-        <img
-          style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
-          src={product.image}
-          alt={product.name}
-        />
-
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flex: "1",
-          }}
-        >
-          {product.description}
-        </Typography>
-      </Stack>
-
-      <Button component={Link} to={`/products/${product.id}`}>
-        View More
-      </Button>
-    </Paper>
+          View More
+        </Button>
+      </Paper>
+    </Link>
   );
 };
 

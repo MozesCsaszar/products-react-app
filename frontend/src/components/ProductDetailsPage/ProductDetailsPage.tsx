@@ -1,11 +1,11 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Rating, Stack, Typography } from "@mui/material";
 
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ErrorPanel from "../ErrorPanel/ErrorPanel";
-import ProductDetailsProps from "../ProductDetails/ProductDetails";
+import ReviewForm from "../ReviewForm/ReviewForm";
 import ReviewList from "../ReviewList/ReviewList";
 
 const ProductDetailsPage = () => {
@@ -29,12 +29,18 @@ const ProductDetailsPage = () => {
     fetchProduct();
   }, [fetchProduct]);
 
+  const nrReviews = product?.reviews.length ?? 0;
+  const avgRating =
+    (product?.reviews.reduce((prev, r) => r.rating + prev, 0) ?? 0) /
+    (nrReviews || 1);
+
   return (
     <Box
       sx={(theme) => ({
         display: "flex",
         width: "100vw",
         height: "100vh",
+        paddingLeft: "1rem",
         [theme.breakpoints.down("md")]: {
           flexDirection: "column",
           height: "auto",
@@ -62,7 +68,7 @@ const ProductDetailsPage = () => {
                 minWidth: "calc(350px + 2rem)",
                 maxWidth: "calc(500px + 2rem)",
                 minHeight: "calc(100vh - 2rem)",
-                paddingY: "1rem",
+                padding: "1rem",
                 [theme.breakpoints.down("md")]: {
                   width: "calc(60vw + 2rem)",
                   margin: "0 auto",
@@ -72,12 +78,84 @@ const ProductDetailsPage = () => {
                 },
               })}
             >
-              <ProductDetailsProps
-                showReview={true}
-                product={product!}
-                headingSize="h5"
-                fetchProduct={fetchProduct}
-              />
+              <Stack
+                sx={{
+                  height: "stretch",
+                  overflowY: "auto",
+                }}
+              >
+                {/* Title */}
+                <Typography
+                  variant="h6"
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    textTransform: "uppercase",
+                    marginBottom: "1rem",
+                    paddingX: "1rem",
+                    lineHeight: "100%",
+                    minHeight: "2.2rem",
+                  }}
+                >
+                  {product.name}
+                </Typography>
+
+                {/* Content */}
+                <Stack
+                  sx={{
+                    height: "100%",
+                    gap: "0.5rem",
+                    overflow: "auto",
+                    paddingX: "1rem",
+                  }}
+                >
+                  <img
+                    style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
+                    src={product.image}
+                    alt={product.name}
+                  />
+
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Rating
+                      sx={{ alignSelf: "center" }}
+                      readOnly
+                      value={avgRating}
+                      precision={0.1}
+                      size="large"
+                    />
+                    <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
+                    <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
+                  </Box>
+
+                  <Typography variant="h6">
+                    {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
+                  </Typography>
+
+                  <ReviewForm
+                    productId={product.id}
+                    fetchProduct={fetchProduct}
+                  ></ReviewForm>
+
+                  <Typography
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      flex: "1",
+                    }}
+                  >
+                    {product.description}
+                  </Typography>
+                </Stack>
+              </Stack>
+
               <Button
                 sx={{ marginX: "1rem", flex: 0, marginTop: "0.5rem" }}
                 onClick={() => navigate(-1)}

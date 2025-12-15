@@ -1,13 +1,17 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { type FC } from "react";
-import type { Review } from "../../model/review";
+import type { Product } from "../../model/product";
+import ReviewForm from "../ReviewForm/ReviewForm";
 import ReviewListItem from "../ReviewListItem/ReviewListItem";
 
 interface ReviewListProps {
-  reviews: Review[];
+  product: Product;
+  fetchProduct: () => void;
 }
 
-const ReviewList: FC<ReviewListProps> = ({ reviews }) => {
+const ReviewList: FC<ReviewListProps> = ({ product, fetchProduct }) => {
+  const reviews = product.reviews;
+
   if (reviews.length === 0) {
     return (
       <Typography sx={{ alignContent: "center", flex: 1 }} variant="h4">
@@ -17,32 +21,53 @@ const ReviewList: FC<ReviewListProps> = ({ reviews }) => {
   }
 
   return (
-    <Box
-      sx={(theme) => ({
+    <Stack
+      sx={{
+        paddingBottom: "1rem",
+        gap: "2rem",
         height: "100%",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-        gridAutoRows: "minmax(200px, 30%)",
-        gap: "1rem",
-        width: "100%",
-        overflowY: "auto",
-        padding: "8px 1rem",
-        [theme.breakpoints.down("md")]: {
-          overflowY: "visible",
-          padding: "0rem 1rem",
-          height: "auto",
-        },
-        [theme.breakpoints.down("sm")]: {
-          paddingX: "0.75rem",
-          gridTemplateColumns: " minmax(250px, 1fr)",
-          height: "auto",
-        },
-      })}
+      }}
     >
-      {reviews.map((review) => (
-        <ReviewListItem key={review.id} review={review} />
-      ))}
-    </Box>
+      {/* Post review form */}
+      <Box
+        sx={(theme) => ({
+          flex: 0,
+          marginX: "2rem",
+          [theme.breakpoints.down("xs")]: { marginX: "1rem" },
+        })}
+      >
+        <ReviewForm productId={product.id} fetchProduct={fetchProduct} />
+      </Box>
+
+      {/* Reviews */}
+      <Box
+        sx={(theme) => ({
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
+          gridAutoRows: "minmax(200px, 30%)",
+          gap: "2rem",
+          width: "100%",
+          overflowY: "auto",
+          paddingX: "2rem",
+          paddingBottom: "1rem",
+          [theme.breakpoints.down("md")]: {
+            overflowY: "visible",
+            gridTemplateColumns: " minmax(250px, 1fr)",
+            gridAutoRows: "225px",
+          },
+          [theme.breakpoints.down("xs")]: {
+            paddingX: "0.75rem",
+            padding: "0rem 1rem",
+            gridTemplateColumns: " minmax(150px, 1fr)",
+            gridAutoRows: "250px",
+          },
+        })}
+      >
+        {reviews.map((review) => (
+          <ReviewListItem key={review.id} review={review} />
+        ))}
+      </Box>
+    </Stack>
   );
 };
 

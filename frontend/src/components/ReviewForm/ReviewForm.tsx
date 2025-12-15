@@ -7,6 +7,7 @@ import {
   Button,
   Rating,
   Snackbar,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -25,25 +26,47 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
   const [snackType, setSnackType] = useState<"success" | "error">("error");
   const [snackText, setSnackText] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [errors, setErrors] = useState<[string, string]>(["", ""]);
 
-  function displaySnackbar(
-    message: string,
-    snackType: "success" | "error" = "error"
-  ) {
-    setSnackType(snackType);
+  function displaySnackbar(text: string, type: "success" | "error" = "error") {
     setSnackOpen(true);
-    setSnackText(message);
+    setSnackText(text);
+    setSnackType(type);
+  }
+
+  function validateMessage(text: string) {
+    return text.trim().length === 0 ? "Message is required!" : "";
+  }
+
+  function setReviewMessage(text: string) {
+    setErrors([errors[0], validateMessage(text)]);
+    setMessage(text);
+  }
+
+  function validateRating(rating: number) {
+    return rating === 0 ? "Rating is required!" : "";
+  }
+
+  function setReviewRating(rating: number) {
+    setErrors([validateRating(rating), errors[1]]);
+    setRating(rating);
+  }
+
+  function validateInput() {
+    const messages: [string, string] = [
+      validateRating(rating),
+      validateMessage(message),
+    ];
+    setErrors(messages);
+    return messages;
   }
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (message.trim().length === 0) {
-      displaySnackbar("Message is required!");
-      return;
-    }
-    if (rating === 0) {
-      displaySnackbar("Rating is required!");
+    // validate input
+    const errors = validateInput();
+    if (!!errors[0] || !!errors[1]) {
       return;
     }
 
@@ -82,22 +105,31 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
             style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             onSubmit={onSubmit}
           >
-            <Rating
-              sx={{ alignSelf: "center" }}
-              size="large"
-              precision={1}
-              value={rating}
-              onChange={(_, value) => setRating(value ?? 0)}
-            ></Rating>
+            <Stack>
+              <Rating
+                sx={{ alignSelf: "center" }}
+                size="large"
+                precision={1}
+                value={rating}
+                onChange={(_, value) => setReviewRating(value ?? 0)}
+              ></Rating>
+              <Typography color="error" variant="caption">
+                {errors[0]}
+              </Typography>
+            </Stack>
+
             <TextField
               multiline
               minRows={5}
               maxRows={10}
               value={message}
-              required
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => setReviewMessage(e.target.value)}
+              error={!!errors[1]}
+              helperText={errors[1]}
             ></TextField>
-            <Button type="submit">Post Review</Button>
+            <Button type="submit" variant="contained" disableElevation>
+              Post Review
+            </Button>
           </form>
         </AccordionDetails>
       </Accordion>

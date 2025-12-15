@@ -26,8 +26,8 @@ class ProductsAPI {
   }
 
   async getProductById(id: string) {
-    const product = (await axios.get<Product>(`${URL_BASE}/products/${id}`))
-      .data;
+    const product = (await axios.get<Product[]>(`${URL_BASE}/products/${id}`))
+      .data[0];
     return {
       ...product,
       image: `${product.image}?random=${getRandom(id)}`,

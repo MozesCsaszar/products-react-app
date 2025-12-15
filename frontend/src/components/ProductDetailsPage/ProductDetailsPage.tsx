@@ -99,60 +99,54 @@ const ProductDetailsPage = () => {
                 </Typography>
               </Box>
 
+              {/* Content */}
               <Stack
                 sx={{
-                  height: "stretch",
-                  overflowY: "auto",
+                  height: "100%",
+                  gap: "0.5rem",
+                  overflow: "auto",
                   padding: "1rem 2rem",
                 }}
               >
-                {/* Content */}
-                <Stack
+                <img
+                  style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
+                  src={product.image}
+                  alt={product.name}
+                />
+
+                <Box
                   sx={{
-                    height: "100%",
-                    gap: "0.5rem",
-                    overflow: "auto",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  <img
-                    style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}
-                    src={product.image}
-                    alt={product.name}
+                  <Rating
+                    sx={{ alignSelf: "center" }}
+                    readOnly
+                    value={avgRating}
+                    precision={0.1}
+                    size="large"
                   />
+                  <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
+                  <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
+                </Box>
 
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Rating
-                      sx={{ alignSelf: "center" }}
-                      readOnly
-                      value={avgRating}
-                      precision={0.1}
-                      size="large"
-                    />
-                    <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
-                    <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
-                  </Box>
+                <Typography variant="h6">
+                  {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
+                </Typography>
 
-                  <Typography variant="h6">
-                    {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
-                  </Typography>
-
-                  <Typography
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flex: "1",
-                    }}
-                  >
-                    {product.description}
-                  </Typography>
-                </Stack>
+                <Typography
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: "1",
+                    overflowY: "auto",
+                  }}
+                >
+                  {product.description}
+                </Typography>
               </Stack>
             </Box>
 

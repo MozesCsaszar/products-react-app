@@ -97,12 +97,15 @@ const ProductDetailsPage = () => {
 
               {/* Content */}
               <Stack
-                sx={{
+                sx={(theme) => ({
                   height: "100%",
                   gap: "0.5rem",
                   overflow: "auto",
                   padding: "1rem 2rem",
-                }}
+                  [theme.breakpoints.down("sm")]: {
+                    paddingX: "1rem",
+                  },
+                })}
               >
                 <img
                   style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}

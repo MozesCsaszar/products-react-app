@@ -53,13 +53,13 @@ const ReviewList: FC<ReviewListProps> = ({ product, fetchProduct }) => {
           [theme.breakpoints.down("md")]: {
             overflowY: "visible",
             gridTemplateColumns: " minmax(250px, 1fr)",
-            height: "auto",
+            gridAutoRows: "225px",
           },
           [theme.breakpoints.down("xs")]: {
             paddingX: "0.75rem",
             padding: "0rem 1rem",
             gridTemplateColumns: " minmax(150px, 1fr)",
-            gridAutoRows: "minmax(250px, 30%)",
+            gridAutoRows: "250px",
           },
         })}
       >

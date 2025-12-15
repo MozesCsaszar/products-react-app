@@ -39,10 +39,11 @@ const ProductDetailsPage = () => {
         display: "flex",
         width: "100vw",
         height: "100vh",
-        paddingLeft: "1rem",
+        paddingX: "1rem",
         [theme.breakpoints.down("md")]: {
           flexDirection: "column",
           height: "auto",
+          paddingX: "0",
         },
       })}
     >
@@ -66,7 +67,6 @@ const ProductDetailsPage = () => {
                 width: "calc(33vw + 2rem)",
                 minWidth: "calc(350px + 2rem)",
                 maxWidth: "calc(500px + 2rem)",
-                minHeight: "calc(100vh - 2rem)",
                 padding: "1rem",
                 [theme.breakpoints.down("md")]: {
                   width: "calc(60vw + 2rem)",
@@ -85,7 +85,7 @@ const ProductDetailsPage = () => {
               >
                 {/* Title */}
                 <Typography
-                  variant="h6"
+                  variant="h5"
                   sx={{
                     display: "flex",
                     justifyContent: "center",
@@ -161,25 +161,31 @@ const ProductDetailsPage = () => {
             {/* Reviews */}
             <Stack
               sx={(theme) => ({
-                maxHeight: "100vh",
+                paddingTop: "1rem",
                 flex: 1,
-                padding: "1rem 0",
                 [theme.breakpoints.down("md")]: {
                   paddingBottom: "0",
                 },
               })}
             >
+              {/* Title */}
               <Typography
                 variant="h5"
                 gutterBottom
-                sx={{ textTransform: "uppercase", marginBottom: "1rem" }}
+                sx={{
+                  textTransform: "uppercase",
+                  marginBottom: "1rem",
+                }}
               >
                 Reviews
               </Typography>
-              <ReviewList
-                fetchProduct={fetchProduct}
-                product={product!}
-              ></ReviewList>
+              {/* Reviews */}
+              <Box sx={{ minHeight: 0 }}>
+                <ReviewList
+                  fetchProduct={fetchProduct}
+                  product={product!}
+                ></ReviewList>
+              </Box>
             </Stack>
           </>
         )}

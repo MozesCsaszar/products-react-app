@@ -119,7 +119,9 @@ const ProductDetailsPage = () => {
                     alignItems: "center",
                     flex: "1",
                     overflowY: "auto",
+                    overflowX: "none",
                   }}
+                  variant="h6"
                 >
                   {product.description}
                 </Typography>

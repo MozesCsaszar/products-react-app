@@ -1,4 +1,4 @@
-import { Box, Paper, Rating, Typography } from "@mui/material";
+import { Paper, Rating, Stack, Typography } from "@mui/material";
 import { type FC } from "react";
 import type { Review } from "../../model/review";
 
@@ -13,6 +13,8 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      minHeight: 0,
+      gap: "0.5rem",
       transition: "transform 0.1s ease-in-out",
       ":hover": {
         transform: "scale(1.035)",
@@ -20,18 +22,18 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
     }}
     elevation={3}
   >
-    <Box
+    <Stack
       sx={{
-        display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        marginBottom: "1rem",
       }}
     >
+      {/* title */}
       <Typography variant="h6">
         {new Date(review.createdAt).toDateString()}
       </Typography>
+
+      {/* rating */}
       <Rating
         sx={{ alignSelf: "center" }}
         readOnly
@@ -39,9 +41,19 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
         precision={0.1}
         size="large"
       />
-    </Box>
+    </Stack>
 
-    <Typography sx={{ margin: "0.5rem 0", width: "80%" }}>
+    {/* review */}
+    <Typography
+      sx={{
+        overflowY: "auto",
+        paddingY: "0.25rem",
+        paddingX: "1rem",
+        width: "90%",
+        alignContent: "center",
+        flex: 1,
+      }}
+    >
       {review.text}
     </Typography>
   </Paper>

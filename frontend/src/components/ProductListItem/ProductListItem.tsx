@@ -36,11 +36,11 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            alignContent: "center",
             textTransform: "uppercase",
-            marginBottom: "1rem",
             paddingX: "1rem",
             lineHeight: "100%",
-            minHeight: "2.2rem",
+            minHeight: "3.2rem",
           }}
         >
           {product.name}

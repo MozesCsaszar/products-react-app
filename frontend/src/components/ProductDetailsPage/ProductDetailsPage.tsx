@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";
 import { type Product } from "../../model/product";
 import ErrorPanel from "../ErrorPanel/ErrorPanel";
-import ReviewForm from "../ReviewForm/ReviewForm";
 import ReviewList from "../ReviewList/ReviewList";
 
 const ProductDetailsPage = () => {
@@ -138,11 +137,6 @@ const ProductDetailsPage = () => {
                     {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
                   </Typography>
 
-                  <ReviewForm
-                    productId={product.id}
-                    fetchProduct={fetchProduct}
-                  ></ReviewForm>
-
                   <Typography
                     sx={{
                       display: "flex",
@@ -182,7 +176,10 @@ const ProductDetailsPage = () => {
               >
                 Reviews
               </Typography>
-              <ReviewList reviews={product!.reviews}></ReviewList>
+              <ReviewList
+                fetchProduct={fetchProduct}
+                product={product!}
+              ></ReviewList>
             </Stack>
           </>
         )}

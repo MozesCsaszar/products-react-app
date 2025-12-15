@@ -95,13 +95,7 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
           </Typography>
         </Stack>
 
-        <Button
-          sx={{ marginX: "1rem" }}
-          component={Link}
-          to={`/products/${product.id}`}
-        >
-          View More
-        </Button>
+        <Button sx={{ marginX: "1rem" }}>View More</Button>
       </Paper>
     </Link>
   );

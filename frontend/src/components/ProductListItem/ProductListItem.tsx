@@ -89,6 +89,8 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
               justifyContent: "center",
               alignItems: "center",
               flex: "1",
+              maxHeight: "5.2rem",
+              overflowY: "auto",
             }}
           >
             {product.description}

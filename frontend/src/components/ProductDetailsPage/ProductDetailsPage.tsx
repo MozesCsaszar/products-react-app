@@ -1,5 +1,5 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Box, Button, Rating, Stack, Typography } from "@mui/material";
-
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAPI from "../../api/products";
@@ -52,6 +52,7 @@ const ProductDetailsPage = () => {
         loading={!product}
         extraButtons={[
           <Button variant="contained" href="/products">
+            <ArrowBackIcon />
             Back to Products
           </Button>,
         ]}
@@ -63,50 +64,54 @@ const ProductDetailsPage = () => {
               sx={(theme) => ({
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
+                justifyContent: "start",
                 width: "calc(33vw + 2rem)",
                 minWidth: "calc(350px + 2rem)",
                 maxWidth: "calc(500px + 2rem)",
-                padding: "1rem",
+                paddingTop: "1rem",
                 [theme.breakpoints.down("md")]: {
                   width: "calc(60vw + 2rem)",
                   margin: "0 auto",
                   padding: "0",
-                  minWidth: "calc(350px - 2rem)",
                   paddingTop: "1rem",
+                  minWidth: "calc(350px - 2rem)",
                 },
               })}
             >
-              <Stack
-                sx={{
-                  height: "stretch",
-                  overflowY: "auto",
-                }}
-              >
-                {/* Title */}
+              {/* Title + Back Button */}
+              <Box sx={{ display: "flex", width: "100%" }}>
+                <Button onClick={() => navigate(-1)}>
+                  <ArrowBackIcon />
+                </Button>
                 <Typography
                   variant="h5"
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
+                    flex: 1,
                     textTransform: "uppercase",
-                    marginBottom: "1rem",
-                    paddingX: "1rem",
                     lineHeight: "100%",
-                    minHeight: "2.2rem",
+                    width: "fit-content",
+                    alignContent: "center",
+                    marginX: "auto",
+                    paddingRight: "64px",
                   }}
                 >
                   {product.name}
                 </Typography>
+              </Box>
 
+              <Stack
+                sx={{
+                  height: "stretch",
+                  overflowY: "auto",
+                  padding: "1rem 2rem",
+                }}
+              >
                 {/* Content */}
                 <Stack
                   sx={{
                     height: "100%",
                     gap: "0.5rem",
                     overflow: "auto",
-                    paddingX: "1rem",
                   }}
                 >
                   <img
@@ -149,13 +154,6 @@ const ProductDetailsPage = () => {
                   </Typography>
                 </Stack>
               </Stack>
-
-              <Button
-                sx={{ marginX: "1rem", flex: 0, marginTop: "0.5rem" }}
-                onClick={() => navigate(-1)}
-              >
-                Back
-              </Button>
             </Box>
 
             {/* Reviews */}

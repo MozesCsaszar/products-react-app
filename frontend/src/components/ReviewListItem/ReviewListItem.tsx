@@ -22,6 +22,7 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
     }}
     elevation={3}
   >
+    {/* rating */}
     <Stack
       sx={{
         alignItems: "center",

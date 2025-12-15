@@ -127,7 +127,9 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
               error={!!errors[1]}
               helperText={errors[1]}
             ></TextField>
-            <Button type="submit">Post Review</Button>
+            <Button type="submit" variant="contained" disableElevation>
+              Post Review
+            </Button>
           </form>
         </AccordionDetails>
       </Accordion>

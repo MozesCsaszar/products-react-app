@@ -43,7 +43,7 @@ const ReviewList: FC<ReviewListProps> = ({ product, fetchProduct }) => {
       <Box
         sx={(theme) => ({
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(375px, 1fr))",
           gridAutoRows: "minmax(200px, 30%)",
           gap: "2rem",
           width: "100%",

@@ -46,14 +46,21 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
 
     {/* review */}
     <Typography
-      sx={{
+      sx={(theme) => ({
         overflowY: "auto",
         paddingY: "0.25rem",
-        paddingX: "1rem",
-        width: "90%",
+        paddingX: "0.5rem",
+        marginX: "1rem",
         alignContent: "center",
+        overflowX: "none",
         flex: 1,
-      }}
+        [theme.breakpoints.down("md")]: {
+          marginX: "0.5rem",
+        },
+        [theme.breakpoints.down("xs")]: {
+          marginX: "0rem",
+        },
+      })}
     >
       {review.text}
     </Typography>

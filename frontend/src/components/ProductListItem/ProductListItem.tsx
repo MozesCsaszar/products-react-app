@@ -1,17 +1,14 @@
-import { Box, Button, Paper, Rating, Stack, Typography } from "@mui/material";
+import { Button, Paper, Stack, Typography } from "@mui/material";
 import { type FC } from "react";
 import { Link } from "react-router";
 import type { Product } from "../../model/product";
+import AverageRating from "../AverageRating/AverageRating";
 
 interface ProductListItemProps {
   product: Product;
 }
 
 const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
-  const nrReviews = product.reviews.length;
-  const avgRating =
-    product.reviews.reduce((prev, r) => r.rating + prev, 0) / (nrReviews || 1);
-
   return (
     <Link style={{ textDecoration: "none" }} to={`/products/${product.id}`}>
       <Paper
@@ -55,27 +52,7 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }) => {
             paddingX: "1rem",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Rating
-              sx={{ alignSelf: "center" }}
-              readOnly
-              value={avgRating}
-              precision={0.1}
-              size="large"
-            />
-            <Typography>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;</Typography>
-            <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
-          </Box>
-
-          <Typography variant="h6">
-            {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
-          </Typography>
+          <AverageRating reviews={product.reviews}></AverageRating>
 
           <img
             style={{ width: "100%", borderRadius: "calc(1rem / 2)" }}

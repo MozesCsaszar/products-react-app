@@ -84,7 +84,7 @@ const ProductsPage = () => {
           label={
             filterValue === ""
               ? "Search Products"
-              : `${filteredProducts.length} / ${products.length} Products Found`
+              : `${filteredProducts.length} / ${products.length} Products Match`
           }
           variant="outlined"
         />

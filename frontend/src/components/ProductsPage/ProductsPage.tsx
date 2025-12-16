@@ -15,11 +15,12 @@ const navSX = (theme: Theme) =>
     top: 0,
     justifyContent: "flex-start",
     alignItems: "center",
-    gap: "1rem",
+    gap: "2rem",
     zIndex: 10,
-    margin: "-1rem -1rem",
-    marginBottom: "1rem",
+    margin: "-2rem",
+    marginBottom: "2rem",
     padding: "1rem",
+    paddingX: "2rem",
     borderRadius: "0",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
@@ -62,7 +63,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <Stack sx={{ padding: "1rem", width: "100%", minHeight: "100vh" }}>
+    <Stack sx={{ padding: "2rem", width: "100%", minHeight: "100vh" }}>
       <Paper sx={(t) => navSX(t)}>
         <Typography
           sx={{
@@ -77,7 +78,8 @@ const ProductsPage = () => {
         <TextField
           sx={{
             flex: 1,
-            maxWidth: "500px",
+            maxWidth: "700px",
+            marginX: "auto",
           }}
           value={filterValue}
           onChange={(e) => setFilterValue(e.target.value)}

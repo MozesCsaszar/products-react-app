@@ -21,7 +21,8 @@ const ProductList: FC<ProductListProps> = ({ products }) => {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gridAutoRows: "1fr",
-        gap: "1rem",
+        gap: "2rem",
+        // rowGap: "1rem",
         [theme.breakpoints.down("lg")]: {
           gridTemplateColumns: "repeat(3, 1fr)",
         },

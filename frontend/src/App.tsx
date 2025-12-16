@@ -5,13 +5,11 @@ import ProductsPage from "./components/ProductsPage/ProductsPage";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route index element={<ProductsPage />}></Route>
-        <Route path="/products" element={<ProductsPage />}></Route>
-        <Route path="/products/:id" element={<ProductDetailsPage />}></Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route index element={<ProductsPage />}></Route>
+      <Route path="/products" element={<ProductsPage />}></Route>
+      <Route path="/products/:id" element={<ProductDetailsPage />}></Route>
+    </Routes>
   );
 }
 

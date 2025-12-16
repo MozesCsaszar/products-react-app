@@ -16,17 +16,16 @@ const navSX = (theme: Theme) =>
     justifyContent: "flex-start",
     alignItems: "center",
     gap: "1rem",
-    backgroundColor: "white",
     zIndex: 10,
     margin: "-1rem -1rem",
     marginBottom: "1rem",
     padding: "1rem",
+    borderRadius: "0",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       alignItems: "stretch",
       gap: "0.25rem",
       padding: "0.75rem",
-      paddingBottom: "0.25rem",
     },
   } as const);
 
@@ -36,11 +35,13 @@ const ProductsPage = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
+  const normalizedFilterValue = filterValue.toLowerCase().trim();
+
   const filteredProducts = useDeferredValue(
     products.filter(
       (product) =>
-        product.name.toLowerCase().includes(filterValue) ||
-        product.description.toLowerCase().includes(filterValue)
+        product.name.toLowerCase().includes(normalizedFilterValue) ||
+        product.description.toLowerCase().includes(normalizedFilterValue)
     ),
     products
   );
@@ -76,21 +77,17 @@ const ProductsPage = () => {
         <TextField
           sx={{
             flex: 1,
+            maxWidth: "500px",
           }}
           value={filterValue}
-          onChange={(e) => setFilterValue(e.target.value.toLowerCase())}
-          label="Search Products"
+          onChange={(e) => setFilterValue(e.target.value)}
+          label={
+            filterValue === ""
+              ? "Search Products"
+              : `${filteredProducts.length} / ${products.length} Products Found`
+          }
           variant="outlined"
         />
-        <Typography
-          sx={{
-            // flex: 1,
-            minWidth: "10em",
-          }}
-          variant="h6"
-        >
-          {filteredProducts.length} / {products.length} Products
-        </Typography>
       </Paper>
       <ErrorPanel error={error} loading={loading}>
         <ProductList products={filteredProducts} />

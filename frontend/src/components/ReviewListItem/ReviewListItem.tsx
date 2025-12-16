@@ -16,9 +16,6 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
       minHeight: 0,
       gap: "0.5rem",
       transition: "transform 0.1s ease-in-out",
-      ":hover": {
-        transform: "scale(1.035)",
-      },
     }}
     elevation={3}
   >

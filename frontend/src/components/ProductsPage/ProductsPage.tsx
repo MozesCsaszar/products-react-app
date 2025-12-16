@@ -68,6 +68,7 @@ const ProductsPage = () => {
             fontFamily: '"Luxurious Script", sans-serif',
             WebkitTextStroke: "1.25px #000510",
             fontSize: "2rem",
+            userSelect: "none",
           }}
         >
           Your Product Reviews&trade;

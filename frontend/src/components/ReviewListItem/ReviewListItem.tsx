@@ -51,6 +51,7 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
         alignContent: "center",
         overflowX: "none",
         flex: 1,
+        wordWrap: "anywhere",
         [theme.breakpoints.down("md")]: {
           marginX: "0.5rem",
         },

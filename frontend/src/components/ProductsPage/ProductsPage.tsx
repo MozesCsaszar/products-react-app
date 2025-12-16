@@ -62,7 +62,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <Stack sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
+    <Stack sx={{ padding: "1rem", width: "100%", minHeight: "100vh" }}>
       <Paper sx={(t) => navSX(t)}>
         <Typography
           sx={{

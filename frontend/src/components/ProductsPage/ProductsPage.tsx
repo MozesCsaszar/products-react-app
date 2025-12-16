@@ -63,6 +63,15 @@ const ProductsPage = () => {
   return (
     <Stack sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
       <Paper sx={(t) => navSX(t)}>
+        <Typography
+          sx={{
+            fontFamily: '"Luxurious Script", sans-serif',
+            WebkitTextStroke: "1.25px #000510",
+            fontSize: "2rem",
+          }}
+        >
+          Your Product Reviews&trade;
+        </Typography>
         <TextField
           sx={{
             flex: 1,

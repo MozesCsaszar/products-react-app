@@ -19,6 +19,14 @@ interface ReviewFormProps {
   fetchProduct: () => void;
 }
 
+function validateMessage(text: string) {
+  return text.trim().length === 0 ? "Message is required!" : "";
+}
+
+function validateRating(rating: number) {
+  return rating === 0 ? "Rating is required!" : "";
+}
+
 const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState<number>(0);
@@ -34,17 +42,9 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, fetchProduct }) => {
     setSnackType(type);
   }
 
-  function validateMessage(text: string) {
-    return text.trim().length === 0 ? "Message is required!" : "";
-  }
-
   function setReviewMessage(text: string) {
     setErrors([errors[0], validateMessage(text)]);
     setMessage(text);
-  }
-
-  function validateRating(rating: number) {
-    return rating === 0 ? "Rating is required!" : "";
   }
 
   function setReviewRating(rating: number) {

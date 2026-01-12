@@ -47,7 +47,7 @@ const ProductDetailsPage = () => {
         error={error}
         loading={!product}
         extraButtons={[
-          <Button variant="contained" href="/products">
+          <Button key="products" variant="contained" href="/products">
             <ArrowBackIcon />
             Back to Products
           </Button>,
@@ -156,7 +156,7 @@ const ProductDetailsPage = () => {
               <Box sx={{ minHeight: 0 }}>
                 <ReviewList
                   fetchProduct={fetchProduct}
-                  product={product!}
+                  product={product}
                 ></ReviewList>
               </Box>
             </Stack>

@@ -16,9 +16,6 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
       minHeight: 0,
       gap: "0.5rem",
       transition: "transform 0.1s ease-in-out",
-      ":hover": {
-        transform: "scale(1.035)",
-      },
     }}
     elevation={3}
   >
@@ -54,6 +51,7 @@ const ReviewListItem: FC<ReviewListItemProps> = ({ review }) => (
         alignContent: "center",
         overflowX: "none",
         flex: 1,
+        wordWrap: "anywhere",
         [theme.breakpoints.down("md")]: {
           marginX: "0.5rem",
         },

@@ -49,15 +49,14 @@ const ReviewList: FC<ReviewListProps> = ({ product, fetchProduct }) => {
           width: "100%",
           overflowY: "auto",
           paddingX: "2rem",
-          paddingBottom: "1rem",
+          paddingY: "1rem",
           [theme.breakpoints.down("md")]: {
             overflowY: "visible",
             gridTemplateColumns: " minmax(250px, 1fr)",
             gridAutoRows: "225px",
           },
           [theme.breakpoints.down("xs")]: {
-            paddingX: "0.75rem",
-            padding: "0rem 1rem",
+            padding: "0rem 0.75rem",
             gridTemplateColumns: " minmax(150px, 1fr)",
             gridAutoRows: "250px",
           },

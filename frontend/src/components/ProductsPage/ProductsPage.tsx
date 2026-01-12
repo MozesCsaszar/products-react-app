@@ -15,18 +15,18 @@ const navSX = (theme: Theme) =>
     top: 0,
     justifyContent: "flex-start",
     alignItems: "center",
-    gap: "1rem",
-    backgroundColor: "white",
+    gap: "2rem",
     zIndex: 10,
-    margin: "-1rem -1rem",
-    marginBottom: "1rem",
+    margin: "-2rem",
+    marginBottom: "2rem",
     padding: "1rem",
+    paddingX: "2rem",
+    borderRadius: "0",
     [theme.breakpoints.down("sm")]: {
       flexDirection: "column",
       alignItems: "stretch",
       gap: "0.25rem",
       padding: "0.75rem",
-      paddingBottom: "0.25rem",
     },
   } as const);
 
@@ -36,11 +36,13 @@ const ProductsPage = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
+  const normalizedFilterValue = filterValue.toLowerCase().trim();
+
   const filteredProducts = useDeferredValue(
     products.filter(
       (product) =>
-        product.name.toLowerCase().includes(filterValue) ||
-        product.description.toLowerCase().includes(filterValue)
+        product.name.toLowerCase().includes(normalizedFilterValue) ||
+        product.description.toLowerCase().includes(normalizedFilterValue)
     ),
     products
   );
@@ -61,26 +63,33 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <Stack sx={{ padding: "1rem", minWidth: "100vw", minHeight: "100vh" }}>
+    <Stack sx={{ padding: "2rem", width: "100%", minHeight: "100vh" }}>
       <Paper sx={(t) => navSX(t)}>
+        <Typography
+          sx={{
+            fontFamily: '"Luxurious Script", sans-serif',
+            WebkitTextStroke: "1.25px #000510",
+            fontSize: "2rem",
+            userSelect: "none",
+          }}
+        >
+          Your Product Reviews&trade;
+        </Typography>
         <TextField
           sx={{
             flex: 1,
+            maxWidth: "700px",
+            marginX: "auto",
           }}
           value={filterValue}
-          onChange={(e) => setFilterValue(e.target.value.toLowerCase())}
-          label="Search Products"
+          onChange={(e) => setFilterValue(e.target.value)}
+          label={
+            filterValue === ""
+              ? "Search Products"
+              : `${filteredProducts.length} / ${products.length} Products Match`
+          }
           variant="outlined"
         />
-        <Typography
-          sx={{
-            // flex: 1,
-            minWidth: "10em",
-          }}
-          variant="h6"
-        >
-          {filteredProducts.length} / {products.length} Products
-        </Typography>
       </Paper>
       <ErrorPanel error={error} loading={loading}>
         <ProductList products={filteredProducts} />

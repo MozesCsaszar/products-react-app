@@ -10,6 +10,9 @@ const theme = createTheme({
       default: "#f5f5f5",
     },
   },
+  shape: {
+    borderRadius: 8,
+  },
   breakpoints: {
     values: {
       xs: 350,

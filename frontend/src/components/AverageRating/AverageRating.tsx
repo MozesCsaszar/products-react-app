@@ -30,7 +30,7 @@ const AverageRating: FC<AverageRatingProps> = ({ reviews }) => {
         <Typography variant="h6">{avgRating.toFixed(2)}</Typography>
       </Box>
       <Typography variant="h6">
-        {nrReviews} Review{nrReviews !== 1 ? "s" : ""}
+        {nrReviews} Review{nrReviews === 1 ? "" : "s"}
       </Typography>
     </Box>
   );

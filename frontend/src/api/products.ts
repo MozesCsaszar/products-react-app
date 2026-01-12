@@ -6,15 +6,11 @@ const URL_BASE: string = import.meta.env.VITE_BASE_URL;
 const randomToProdut: { [key: string]: number } = {};
 
 function getRandom(id: string) {
-  if (randomToProdut[id] === undefined) {
-    randomToProdut[id] = Math.floor(Math.random() * 10000);
-  }
+  randomToProdut[id] ??= Math.floor(Math.random() * 10000);
   return randomToProdut[id];
 }
 
 class ProductsAPI {
-  constructor() {}
-
   async getProducts() {
     return (await axios.get<Product[]>(`${URL_BASE}/products`)).data.map(
       // add random part to image URL
